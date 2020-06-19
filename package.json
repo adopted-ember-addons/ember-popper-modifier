@@ -17,6 +17,9 @@
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
+    "lint:md": "prettier --check '**/*.md'",
+    "lint:json": "prettier --check '**/*.json'",
+    "lint:yml": "prettier --check '**/*.yml'",
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
@@ -81,6 +84,10 @@
   "lint-staged": {
     "*.hbs": "ember-template-lint",
     "*.js": "eslint --fix",
-    "*.{md,json}": "prettier --write"
+    "*.{md,json,yml}": "prettier --write"
+  },
+  "volta": {
+    "node": "12.18.1",
+    "yarn": "1.22.4"
   }
 }
