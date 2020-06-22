@@ -26,7 +26,7 @@ module("Integration | Modifier | popper", function (hooks) {
     assert.dom(this.tooltipElement).hasStyle({ position: "absolute" });
   });
 
-  test("it can configure options on the Popper", async function (assert) {
+  test("it can configure named options on the Popper", async function (assert) {
     this.set("placement", "right");
 
     await render(hbs`
@@ -56,6 +56,41 @@ module("Integration | Modifier | popper", function (hooks) {
         .hasAttribute(
           "data-popper-placement",
           this.placement,
+          "Updated Popper options"
+        );
+    });
+  });
+
+  test("it can configure positional options on the Popper", async function (assert) {
+    this.set("popperOptions", { placement: "right" });
+
+    await render(hbs`
+      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+        Tooltip!
+      </span>
+      <span data-test-reference {{popper this.tooltipElement this.popperOptions}}>
+        Reference!
+      </span>
+    `);
+
+    await assert.waitFor(() => {
+      assert
+        .dom(this.tooltipElement)
+        .hasAttribute(
+          "data-popper-placement",
+          this.popperOptions.placement,
+          "Passed placement configuration to Popper"
+        );
+    });
+
+    this.set("popperOptions", { placement: "bottom-start" });
+
+    await assert.waitFor(() => {
+      assert
+        .dom(this.tooltipElement)
+        .hasAttribute(
+          "data-popper-placement",
+          this.popperOptions.placement,
           "Updated Popper options"
         );
     });

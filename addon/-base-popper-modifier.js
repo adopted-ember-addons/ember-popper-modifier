@@ -17,7 +17,12 @@ export default class PopperModifier extends Modifier {
   }
 
   get popperOptions() {
-    const { ...options } = this.args.named;
+    const { ...positionalOptions } = this.args.positional[1] ?? {};
+    const { ...namedOptions } = this.args.named;
+    const options = {
+      ...positionalOptions,
+      ...namedOptions,
+    };
 
     if (options.modifiers) {
       options.modifiers = isArray(options.modifiers)
