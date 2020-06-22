@@ -2,6 +2,7 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { find, render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
+import { getPopperForElement } from "ember-popper-modifier";
 
 module("Integration | Modifier | popper", function (hooks) {
   setupRenderingTest(hooks);
@@ -59,6 +60,22 @@ module("Integration | Modifier | popper", function (hooks) {
           "Updated Popper options"
         );
     });
+  });
+
+  test("the popper instance for the element can be looked up", async function (assert) {
+    await render(hbs`
+      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+        Tooltip!
+      </span>
+      <span data-test-reference {{popper this.tooltipElement}}>
+        Reference!
+      </span>
+    `);
+
+    const element = find("[data-test-reference]");
+    const popper = getPopperForElement(element);
+
+    assert.ok(popper, "Returns a Popper instance");
   });
 
   test("it can configure positional options on the Popper", async function (assert) {

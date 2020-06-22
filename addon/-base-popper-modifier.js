@@ -3,6 +3,8 @@ import { isArray } from "@ember/array";
 import { assert } from "@ember/debug";
 import { createPopper } from "@popperjs/core";
 
+import { setPopperForElement } from "./index";
+
 export default class PopperModifier extends Modifier {
   /** @type {HTMLElement} */
   // eslint-disable-next-line getter-return
@@ -41,6 +43,8 @@ export default class PopperModifier extends Modifier {
         this.tooltipElement,
         this.popperOptions
       );
+
+      setPopperForElement(this.element, this.popper);
     }
   }
 
