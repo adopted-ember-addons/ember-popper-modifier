@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render } from "@ember/test-helpers";
+import { find, render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 
 module("Integration | Modifier | popper", function (hooks) {
@@ -58,6 +58,76 @@ module("Integration | Modifier | popper", function (hooks) {
           this.placement,
           "Updated Popper options"
         );
+    });
+  });
+
+  module("adding modifiers", function () {
+    test("can apply a single modifier", async function (assert) {
+      await render(hbs`
+        <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+          <span data-popper-arrow>Arrow</span>
+          Tooltip!
+        </span>
+        <span
+          data-test-reference
+          {{popper this.tooltipElement modifiers=(popper-modifier 'arrow')}}
+        >
+          Reference!
+        </span>
+      `);
+
+      assert
+        .dom("[data-popper-arrow]")
+        .hasAttribute("style", { any: true }, "Arrow modifier applied");
+    });
+
+    test("can apply an array of modifiers", async function (assert) {
+      await render(hbs`
+        <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+          <span data-popper-arrow>Arrow</span>
+          Tooltip!
+        </span>
+        <span
+          data-test-reference
+          {{popper this.tooltipElement modifiers=(array (popper-modifier 'arrow'))}}
+        >
+          Reference!
+        </span>
+      `);
+
+      assert
+        .dom("[data-popper-arrow]")
+        .hasAttribute("style", { any: true }, "Arrow modifier applied");
+    });
+
+    test("popper is updated when a modifier configuration is updated", async function (assert) {
+      this.skidding = 0;
+      this.distance = 0;
+
+      await render(hbs`
+        <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+          Tooltip!
+        </span>
+        <span
+          data-test-reference
+          {{popper this.tooltipElement modifiers=(popper-modifier 'offset' options=(hash offset=(array this.skidding this.distance)))}}
+        >
+          Reference!
+        </span>
+      `);
+
+      const { top: originalTopSetting } = find(
+        "[data-test-tooltip]"
+      ).getBoundingClientRect();
+
+      this.set("distance", 10);
+
+      await assert.waitFor(() => {
+        assert.greaterThan(
+          find("[data-test-tooltip]").getBoundingClientRect().top,
+          originalTopSetting
+        );
+      });
     });
   });
 });

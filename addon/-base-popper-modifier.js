@@ -1,4 +1,5 @@
 import Modifier from "ember-modifier";
+import { isArray } from "@ember/array";
 import { assert } from "@ember/debug";
 import { createPopper } from "@popperjs/core";
 
@@ -16,7 +17,15 @@ export default class PopperModifier extends Modifier {
   }
 
   get popperOptions() {
-    return this.args.named;
+    const { ...options } = this.args.named;
+
+    if (options.modifiers) {
+      options.modifiers = isArray(options.modifiers)
+        ? options.modifiers
+        : [options.modifiers];
+    }
+
+    return options;
   }
 
   didReceiveArguments() {
