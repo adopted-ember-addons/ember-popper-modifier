@@ -88,7 +88,7 @@
   "lint-staged": {
     "*.hbs": "ember-template-lint",
     "*.js": "eslint --fix",
-    "*.{md,json,yml}": "prettier --write"
+    "*.{css,json,md,yml}": "prettier --write"
   },
   "standard-version": {
     "scripts": {

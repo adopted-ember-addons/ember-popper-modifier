@@ -21,7 +21,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
       - run: yarn lint
-      - run: yarn prettier --check "**/*.{md,json}"
+      - run: yarn prettier --check "**/*.{css,json,md,yml}"
 
   test:
     name: Test
