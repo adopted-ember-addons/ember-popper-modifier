@@ -4,6 +4,7 @@ import { setApplication } from "@ember/test-helpers";
 import { start } from "ember-qunit";
 
 import "./assertions/comparisons";
+import "./assertions/testdouble";
 import "./assertions/wait-for";
 
 setApplication(Application.create(config.APP));
