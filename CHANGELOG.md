@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-2](https://github.com/alexlafroscia/ember-popper-modifier/compare/v1.0.0-1...v1.0.0-2) (2020-06-23)
+
+### Bug Fixes
+
+- destroy popper with modifier ([37a637c](https://github.com/alexlafroscia/ember-popper-modifier/commit/37a637cca5e5e0a94db8dc2d7c1c97eaeaf4fe58))
+
 ## [1.0.0-1](https://github.com/alexlafroscia/ember-popper-modifier/compare/v1.0.0-0...v1.0.0-1) (2020-06-22)
 
 ### Features
