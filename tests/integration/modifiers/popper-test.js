@@ -1,7 +1,8 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { find, render } from "@ember/test-helpers";
+import { clearRender, find, render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
+import td from "testdouble";
 import { getPopperForElement } from "ember-popper-modifier";
 
 module("Integration | Modifier | popper", function (hooks) {
@@ -11,6 +12,10 @@ module("Integration | Modifier | popper", function (hooks) {
     this.setTooltipElement = (element) => {
       this.set("tooltipElement", element);
     };
+  });
+
+  hooks.afterEach(function () {
+    td.reset();
   });
 
   test("it attaches a tooltip to an element", async function (assert) {
@@ -111,6 +116,31 @@ module("Integration | Modifier | popper", function (hooks) {
           "Updated Popper options"
         );
     });
+  });
+
+  test("it destroys the popper instance with the modifier", async function (assert) {
+    await render(hbs`
+      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+        Tooltip!
+      </span>
+      <span data-test-reference {{popper this.tooltipElement this.popperOptions}}>
+        Reference!
+      </span>
+    `);
+
+    const popper = getPopperForElement(find("[data-test-reference]"));
+
+    td.replace(popper, "destroy");
+
+    await clearRender();
+
+    assert.verify(
+      popper.destroy(),
+      "Destroyed the Popper instance when un-mounting"
+    );
+
+    // Make sure we _actually_ destroy the popper instance
+    popper.destroy();
   });
 
   module("adding modifiers", function () {

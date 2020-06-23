@@ -51,4 +51,8 @@ export default class PopperModifier extends Modifier {
   didUpdateArguments() {
     this.popper?.setOptions(this.popperOptions);
   }
+
+  willRemove() {
+    this.popper?.destroy();
+  }
 }
