@@ -1,9 +1,14 @@
 import Modifier from "ember-modifier";
 import { isArray } from "@ember/array";
+import { isEmpty } from "@ember/utils";
 import { assert } from "@ember/debug";
 import { createPopper } from "@popperjs/core";
 
 import { setPopperForElement } from "./index";
+import {
+  beginRunLoopModifier as beginRunLoop,
+  endRunLoopModifier as endRunLoop,
+} from "./in-runloop-modifier";
 
 export default class PopperModifier extends Modifier {
   /** @type {HTMLElement} */
@@ -26,11 +31,14 @@ export default class PopperModifier extends Modifier {
       ...namedOptions,
     };
 
-    if (options.modifiers) {
-      options.modifiers = isArray(options.modifiers)
-        ? options.modifiers
-        : [options.modifiers];
-    }
+    // Ensure that the `modifiers` is always an array
+    const modifiers = isEmpty(options.modifiers)
+      ? []
+      : isArray(options.modifiers)
+      ? options.modifiers
+      : [options.modifiers];
+    // Add runloop integration to the array of modifiers
+    options.modifiers = [...modifiers, beginRunLoop, endRunLoop];
 
     return options;
   }
