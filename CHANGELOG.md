@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-4](https://github.com/alexlafroscia/ember-popper-modifier/compare/v1.0.0-3...v1.0.0-4) (2020-08-05)
+
+### Features
+
+- support modifiers as positional params ([7ab4a99](https://github.com/alexlafroscia/ember-popper-modifier/commit/7ab4a99d53b54aea7dd5d7e20f619c46af8f729a)), closes [#13](https://github.com/alexlafroscia/ember-popper-modifier/issues/13)
+
 ## [1.0.0-3](https://github.com/alexlafroscia/ember-popper-modifier/compare/v1.0.0-2...v1.0.0-3) (2020-08-05)
 
 ### Features
