@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { clearRender, find, render } from "@ember/test-helpers";
+import { clearRender, render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import td from "testdouble";
 import { getPopperForElement } from "ember-popper-modifier";
@@ -12,18 +12,25 @@ module("Integration | Modifier | popper", function (hooks) {
     this.setTooltipElement = (element) => {
       this.set("tooltipElement", element);
     };
+
+    this.setReferenceElement = (element) => {
+      this.set("referenceElement", element);
+    };
   });
 
   hooks.afterEach(function () {
+    this.set("tooltipElement", undefined);
+    this.set("referenceElement", undefined);
+
     td.reset();
   });
 
   test("it attaches a tooltip to an element", async function (assert) {
     await render(hbs`
-      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+      <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
-      <span data-test-reference {{popper this.tooltipElement}}>
+      <span {{popper this.tooltipElement}}>
         Reference!
       </span>
     `);
@@ -36,10 +43,10 @@ module("Integration | Modifier | popper", function (hooks) {
     this.set("placement", "right");
 
     await render(hbs`
-      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+      <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
-      <span data-test-reference {{popper this.tooltipElement placement=this.placement}}>
+      <span {{popper this.tooltipElement placement=this.placement}}>
         Reference!
       </span>
     `);
@@ -69,16 +76,15 @@ module("Integration | Modifier | popper", function (hooks) {
 
   test("the popper instance for the element can be looked up", async function (assert) {
     await render(hbs`
-      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+      <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
-      <span data-test-reference {{popper this.tooltipElement}}>
+      <span {{did-insert this.setReferenceElement}} {{popper this.tooltipElement}}>
         Reference!
       </span>
     `);
 
-    const element = find("[data-test-reference]");
-    const popper = getPopperForElement(element);
+    const popper = getPopperForElement(this.referenceElement);
 
     assert.ok(popper, "Returns a Popper instance");
   });
@@ -87,10 +93,10 @@ module("Integration | Modifier | popper", function (hooks) {
     this.set("popperOptions", { placement: "right" });
 
     await render(hbs`
-      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+      <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
-      <span data-test-reference {{popper this.tooltipElement this.popperOptions}}>
+      <span {{popper this.tooltipElement this.popperOptions}}>
         Reference!
       </span>
     `);
@@ -120,15 +126,15 @@ module("Integration | Modifier | popper", function (hooks) {
 
   test("it destroys the popper instance with the modifier", async function (assert) {
     await render(hbs`
-      <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+      <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
-      <span data-test-reference {{popper this.tooltipElement this.popperOptions}}>
+      <span {{did-insert this.setReferenceElement}} {{popper this.tooltipElement this.popperOptions}}>
         Reference!
       </span>
     `);
 
-    const popper = getPopperForElement(find("[data-test-reference]"));
+    const popper = getPopperForElement(this.referenceElement);
 
     td.replace(popper, "destroy");
 
@@ -146,70 +152,91 @@ module("Integration | Modifier | popper", function (hooks) {
   module("adding modifiers", function () {
     test("can apply a single modifier", async function (assert) {
       await render(hbs`
-        <span data-test-tooltip {{did-insert this.setTooltipElement}}>
-          <span data-popper-arrow>Arrow</span>
+        <span {{did-insert this.setTooltipElement}}>
           Tooltip!
         </span>
         <span
-          data-test-reference
-          {{popper this.tooltipElement modifiers=(popper-modifier 'arrow')}}
+          {{did-insert this.setReferenceElement}}
+          {{popper this.tooltipElement modifiers=(popper-modifier 'offset' offset=(array 0 2))}}
         >
           Reference!
         </span>
       `);
 
-      assert
-        .dom("[data-popper-arrow]")
-        .hasAttribute("style", { any: true }, "Arrow modifier applied");
+      const popper = getPopperForElement(this.referenceElement);
+      const offsetModifier = popper.state.orderedModifiers.find(
+        (mod) => mod.name === "offset"
+      );
+
+      assert.deepEqual(
+        offsetModifier.options.offset,
+        [0, 2],
+        "Offset modifier applied"
+      );
     });
 
     test("can apply an array of modifiers", async function (assert) {
       await render(hbs`
-        <span data-test-tooltip {{did-insert this.setTooltipElement}}>
-          <span data-popper-arrow>Arrow</span>
+        <span {{did-insert this.setTooltipElement}}>
           Tooltip!
         </span>
         <span
-          data-test-reference
-          {{popper this.tooltipElement modifiers=(array (popper-modifier 'arrow'))}}
+          {{did-insert this.setReferenceElement}}
+          {{popper this.tooltipElement modifiers=(array (popper-modifier 'offset' offset=(array 0 2)))}}
         >
           Reference!
         </span>
       `);
 
-      assert
-        .dom("[data-popper-arrow]")
-        .hasAttribute("style", { any: true }, "Arrow modifier applied");
+      const popper = getPopperForElement(this.referenceElement);
+      const offsetModifier = popper.state.orderedModifiers.find(
+        (mod) => mod.name === "offset"
+      );
+
+      assert.deepEqual(
+        offsetModifier?.options.offset,
+        [0, 2],
+        "Offset modifier applied"
+      );
     });
 
     test("popper is updated when a modifier configuration is updated", async function (assert) {
-      this.skidding = 0;
       this.distance = 0;
 
       await render(hbs`
-        <span data-test-tooltip {{did-insert this.setTooltipElement}}>
+        <span {{did-insert this.setTooltipElement}}>
           Tooltip!
         </span>
         <span
-          data-test-reference
-          {{popper this.tooltipElement modifiers=(popper-modifier 'offset' offset=(array this.skidding this.distance))}}
+          {{did-insert this.setReferenceElement}}
+          {{popper this.tooltipElement modifiers=(popper-modifier 'offset' offset=(array 0 this.distance))}}
         >
           Reference!
         </span>
       `);
 
-      const { top: originalTopSetting } = find(
-        "[data-test-tooltip]"
-      ).getBoundingClientRect();
+      const popper = getPopperForElement(this.referenceElement);
+      let offsetModifier = popper.state.orderedModifiers.find(
+        (mod) => mod.name === "offset"
+      );
+
+      assert.deepEqual(
+        offsetModifier.options.offset,
+        [0, 0],
+        "Offset modifier applied with initial configuration"
+      );
 
       this.set("distance", 10);
 
-      await assert.waitFor(() => {
-        assert.greaterThan(
-          find("[data-test-tooltip]").getBoundingClientRect().top,
-          originalTopSetting
-        );
-      });
+      offsetModifier = popper.state.orderedModifiers.find(
+        (mod) => mod.name === "offset"
+      );
+
+      assert.deepEqual(
+        offsetModifier.options.offset,
+        [0, 10],
+        "Offset modifier updated to reflect new configuration"
+      );
     });
   });
 });
