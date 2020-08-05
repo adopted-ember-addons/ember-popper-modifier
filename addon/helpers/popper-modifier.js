@@ -8,7 +8,7 @@ export function buildPopperModifier([name, positionalOptions], optionsHash) {
 
   return {
     name,
-    ...options,
+    options,
   };
 }
 

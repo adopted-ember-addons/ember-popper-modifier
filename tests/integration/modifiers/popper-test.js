@@ -192,7 +192,7 @@ module("Integration | Modifier | popper", function (hooks) {
         </span>
         <span
           data-test-reference
-          {{popper this.tooltipElement modifiers=(popper-modifier 'offset' options=(hash offset=(array this.skidding this.distance)))}}
+          {{popper this.tooltipElement modifiers=(popper-modifier 'offset' offset=(array this.skidding this.distance))}}
         >
           Reference!
         </span>
