@@ -4,7 +4,7 @@ import { isEmpty } from "@ember/utils";
 import { assert } from "@ember/debug";
 import { createPopper } from "@popperjs/core";
 
-import { setPopperForElement } from "./index";
+import { setPopperForElement, isModifier } from "./index";
 import {
   beginRunLoopModifier as beginRunLoop,
   endRunLoopModifier as endRunLoop,
@@ -24,10 +24,26 @@ export default class PopperModifier extends Modifier {
   }
 
   get popperOptions() {
-    const { ...positionalOptions } = this.args.positional[1] ?? {};
+    // Get an array of just positional "options"; first item is an element reference
+    const positionalArguments = this.args.positional
+      .slice(1)
+      .filter((arg) => Boolean(arg));
+
+    // Positional args that are not modifiers should be treated as full "options" objects
+    const allPositionalOptions = positionalArguments.filter(
+      (arg) => !isModifier(arg)
+    );
+
+    // Positional args that are modifiers will extend the rest of the configuration
+    const allPositionalModifiers = positionalArguments.filter((arg) =>
+      isModifier(arg)
+    );
+
     const { ...namedOptions } = this.args.named;
     const options = {
-      ...positionalOptions,
+      ...allPositionalOptions.reduce((acc, curr) => {
+        return { ...acc, ...curr };
+      }, {}),
       ...namedOptions,
     };
 
@@ -37,8 +53,14 @@ export default class PopperModifier extends Modifier {
       : isArray(options.modifiers)
       ? options.modifiers
       : [options.modifiers];
-    // Add runloop integration to the array of modifiers
-    options.modifiers = [...modifiers, beginRunLoop, endRunLoop];
+
+    // Add runloop integration and positional modifiers to the array of modifiers
+    options.modifiers = [
+      ...modifiers,
+      ...allPositionalModifiers,
+      beginRunLoop,
+      endRunLoop,
+    ];
 
     return options;
   }

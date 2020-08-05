@@ -1,4 +1,5 @@
 import { helper } from "@ember/component/helper";
+import { createModifier } from "../index";
 
 export function buildPopperModifier([name, positionalOptions], optionsHash) {
   const options = {
@@ -6,10 +7,10 @@ export function buildPopperModifier([name, positionalOptions], optionsHash) {
     ...optionsHash,
   };
 
-  return {
+  return createModifier({
     name,
     options,
-  };
+  });
 }
 
 export default helper(buildPopperModifier);

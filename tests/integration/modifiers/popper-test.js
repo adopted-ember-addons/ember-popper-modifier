@@ -129,7 +129,7 @@ module("Integration | Modifier | popper", function (hooks) {
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
-      <span {{did-insert this.setReferenceElement}} {{popper this.tooltipElement this.popperOptions}}>
+      <span {{did-insert this.setReferenceElement}} {{popper this.tooltipElement}}>
         Reference!
       </span>
     `);
@@ -194,7 +194,32 @@ module("Integration | Modifier | popper", function (hooks) {
       );
 
       assert.deepEqual(
-        offsetModifier?.options.offset,
+        offsetModifier.options.offset,
+        [0, 2],
+        "Offset modifier applied"
+      );
+    });
+
+    test("can apply modifiers as positional params", async function (assert) {
+      await render(hbs`
+        <span {{did-insert this.setTooltipElement}}>
+          Tooltip!
+        </span>
+        <span
+          {{did-insert this.setReferenceElement}}
+          {{popper this.tooltipElement (popper-modifier 'offset' offset=(array 0 2))}}
+        >
+          Reference!
+        </span>
+      `);
+
+      const popper = getPopperForElement(this.referenceElement);
+      const offsetModifier = popper.state.orderedModifiers.find(
+        (mod) => mod.name === "offset"
+      );
+
+      assert.deepEqual(
+        offsetModifier.options.offset,
         [0, 2],
         "Offset modifier applied"
       );
