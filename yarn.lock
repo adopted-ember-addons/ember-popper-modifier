@@ -1336,18 +1336,16 @@
     ember-modifier-manager-polyfill "^1.1.0"
 
 "@ember/test-helpers@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.0.tgz#7a7ad1b991caefca74de283f3b16e425cbb600d6"
-  integrity sha512-LexeWURLr2WV7NrVYSZiVkwV34rqB7BuBDoOz6aK4KaSBnEZPs94PMJDtb0Zbyh0qSOIs2QERKSK3qn92jhxtg==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.1.tgz#584eb8359c4bf84670320a95e6af629d7526bc2a"
+  integrity sha512-S8GKP0tBkggim/8ReMREIKWRRsRilNTZGvnm4js673pnDZ1QIpxDx/EHZEf1V3loTvRGQGGmDbGFVlVIfW0vQg==
   dependencies:
     "@ember/test-waiters" "^2.4.0"
     broccoli-debug "^0.6.5"
     broccoli-funnel "^3.0.3"
-    ember-auto-import "^1.10.1"
     ember-cli-babel "^7.23.1"
     ember-cli-htmlbars "^5.2.0"
     ember-destroyable-polyfill "^2.0.3"
-    es6-promise "^4.2.8"
 
 "@ember/test-waiters@^2.4.0":
   version "2.4.0"
@@ -5528,16 +5526,7 @@ ember-compatibility-helpers@^1.1.2, ember-compatibility-helpers@^1.2.0, ember-co
     ember-cli-version-checker "^2.1.1"
     semver "^5.4.1"
 
-ember-destroyable-polyfill@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ember-destroyable-polyfill/-/ember-destroyable-polyfill-2.0.2.tgz#2cc7532bd3c00e351b4da9b7fc683f4daff79671"
-  integrity sha512-9t+ya+9c+FkNM5IAyJIv6ETG8jfZQaUnFCO5SeLlV0wkSw7TOexyb61jh5GVee0KmknfRhrRGGAyT4Y0TwkZ+w==
-  dependencies:
-    ember-cli-babel "^7.22.1"
-    ember-cli-version-checker "^5.1.1"
-    ember-compatibility-helpers "^1.2.1"
-
-ember-destroyable-polyfill@^2.0.3:
+ember-destroyable-polyfill@^2.0.2, ember-destroyable-polyfill@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/ember-destroyable-polyfill/-/ember-destroyable-polyfill-2.0.3.tgz#1673ed66609a82268ef270a7d917ebd3647f11e1"
   integrity sha512-TovtNqCumzyAiW0/OisSkkVK93xnVF4NRU6+FN0ubpfwEOpRrmM2RqDwXI6YAChCgSHON1cz0DfQStpA1Gjuuw==
@@ -5893,11 +5882,6 @@ es-to-primitive@^1.2.1:
     is-callable "^1.1.4"
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
-
-es6-promise@^4.2.8:
-  version "4.2.8"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
-  integrity sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
 
 escalade@^3.1.1:
   version "3.1.1"
