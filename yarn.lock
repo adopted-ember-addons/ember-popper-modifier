@@ -1635,9 +1635,9 @@
     fastq "^1.6.0"
 
 "@popperjs/core@^2.4.2":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
-  integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.1.tgz#1231033b163612bee45921ab9566efc4b59449b6"
+  integrity sha512-XIZz4RLgu+Kzeq5l/YQ/ULd0hKSEXJ8hZg7YdPyxuZDXEkljhCOx6rIZl7FKrbPgZV+usJtro8kuCQ9T8nAEyA==
 
 "@simple-dom/interface@^1.4.0":
   version "1.4.0"
