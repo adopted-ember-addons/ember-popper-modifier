@@ -11858,9 +11858,9 @@ terser@^5.7.2:
     source-map-support "~0.5.20"
 
 testdouble-qunit@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/testdouble-qunit/-/testdouble-qunit-3.0.0.tgz#142e7fe32cbd3d3f442cd8539f236dea63db2fa8"
-  integrity sha512-zd2IKz5eELq4bZPDG0HYE6JTALGibUvrOy9OD05JiiE+4/UEFBDDG7P0tWjJfP5rk2Vm+gK9Do02a/xtvWe+jA==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/testdouble-qunit/-/testdouble-qunit-3.0.3.tgz#eeaebab38e17c48c5784196ed5137cc73f178bd4"
+  integrity sha512-HcDEL9V/XLMWW8gQ+T6BvCIde+6bFW4nXI3FSjcDJYRSSi8KNIbm1tcTediBIIXjsJ7ZtyavpkSlMew8g766gA==
 
 testdouble@^3.16.0:
   version "3.16.3"
