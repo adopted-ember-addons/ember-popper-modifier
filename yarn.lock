@@ -5714,10 +5714,10 @@ eslint-config-prettier@^8.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.5.0.tgz#5a81680ec934beca02c7b1a61cf8ca34b66feab1"
   integrity sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==
 
-eslint-plugin-ember@^10.2.0:
-  version "10.6.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.6.1.tgz#04ea84cc82307f64a2faa4f2855b30e5ebf9f722"
-  integrity sha512-R+TN3jwhYQ2ytZCA1VkfJDZSGgHFOHjsHU1DrBlRXYRepThe56PpuGxywAyDvQ7inhoAz3e6G6M60PzpvjzmNg==
+eslint-plugin-ember@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-11.0.0.tgz#74f9581c2ec6e87b16e9b5bcf74df5970a2caa06"
+  integrity sha512-tAqMeD1yZvLlJejidvxbsIyrofWEKwrVrVkGziYCgAA4GNAjXa+lJB6Geh+n6z5bY3nv5qWXTpb4Y6frgZHJPQ==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     css-tree "^2.0.4"
@@ -5884,12 +5884,7 @@ estraverse@^4.1.1:
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
   integrity sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==
 
-estraverse@^5.1.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-5.2.0.tgz#307df42547e6cc7324d3cf03c155d5cdb8c53880"
-  integrity sha512-BxbNGGNm0RyRYvUdHpIwv9IWzeM9XClbOxwoATuFdOE7ZE6wHL+HQ5T8hoPM+zHvmKzzsEqhgy0GrQ5X13afiQ==
-
-estraverse@^5.2.0:
+estraverse@^5.1.0, estraverse@^5.2.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-5.3.0.tgz#2eea5290702f26ab8fe5370370ff86c965d21123"
   integrity sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==
