@@ -1,4 +1,5 @@
 import Modifier from "ember-modifier";
+import { registerDestructor } from "@ember/destroyable";
 import { isArray } from "@ember/array";
 import { isEmpty } from "@ember/utils";
 import { assert } from "@ember/debug";
@@ -23,9 +24,9 @@ export default class PopperModifier extends Modifier {
     assert("Must implement `referenceElement` property", false);
   }
 
-  get popperOptions() {
+  initPopperOptions(positional, named) {
     // Get an array of just positional "options"; first item is an element reference
-    const positionalArguments = this.args.positional
+    const positionalArguments = positional
       .slice(1)
       .filter((arg) => Boolean(arg));
 
@@ -39,7 +40,7 @@ export default class PopperModifier extends Modifier {
       isModifier(arg)
     );
 
-    const { ...namedOptions } = this.args.named;
+    const { ...namedOptions } = named;
     const options = {
       ...allPositionalOptions.reduce((acc, curr) => {
         return { ...acc, ...curr };
@@ -65,7 +66,12 @@ export default class PopperModifier extends Modifier {
     return options;
   }
 
-  didReceiveArguments() {
+  modify(element, positionalArgs, namedArgs) {
+    this.primaryElement = element;
+    this.secondaryElement = positionalArgs[0];
+
+    this.popperOptions = this.initPopperOptions(positionalArgs, namedArgs);
+
     // Create the popper once all required arguments are present
     if (!this.popper && this.referenceElement && this.tooltipElement) {
       this.popper = createPopper(
@@ -74,15 +80,17 @@ export default class PopperModifier extends Modifier {
         this.popperOptions
       );
 
-      setPopperForElement(this.element, this.popper);
+      setPopperForElement(this.primaryElement, this.popper);
     }
-  }
-
-  didUpdateArguments() {
     this.popper?.setOptions(this.popperOptions);
   }
 
-  willRemove() {
-    this.popper?.destroy();
+  constructor(owner, args) {
+    super(owner, args);
+    registerDestructor(this, this.cleanup);
   }
+
+  cleanup = () => {
+    this.popper?.destroy();
+  };
 }
