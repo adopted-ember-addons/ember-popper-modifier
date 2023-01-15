@@ -5,7 +5,7 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "https://github.com/alexlafroscia/ember-popper-modifier.git",
+  "repository": "https://github.com/adopted-ember-addons/ember-popper-modifier.git",
   "license": "MIT",
   "author": "",
   "directories": {
