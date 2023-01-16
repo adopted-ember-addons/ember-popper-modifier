@@ -4,7 +4,7 @@ module.exports = {
   singleQuote: true,
   overrides: [
     {
-      files: '*.hbs',
+      files: ['*.css', '*.hbs'],
       options: {
         singleQuote: false,
       },
