@@ -47,7 +47,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ember-try-scenario: [ember-lts-3.24]
+        ember-try-scenario:
+          - ember-lts-3.28
+          - ember-lts-4.4
+          - ember-release
+          - ember-beta
+          - ember-canary
     steps:
       - uses: actions/checkout@v1
       - uses: volta-cli/action@v1
