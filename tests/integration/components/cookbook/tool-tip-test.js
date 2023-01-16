@@ -1,25 +1,25 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
-import { render, triggerEvent } from "@ember/test-helpers";
-import { hbs } from "ember-cli-htmlbars";
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, triggerEvent } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
 
-module("Integration | Component | cookbook/tool-tip", function (hooks) {
+module('Integration | Component | cookbook/tool-tip', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
     this.showTooltip = false;
     this.handleMouseOver = () => {
-      this.set("showTooltip", true);
+      this.set('showTooltip', true);
     };
     this.handleMouseLeave = () => {
-      this.set("showTooltip", false);
+      this.set('showTooltip', false);
     };
     this.setButtonElement = (element) => {
-      this.set("buttonElement", element);
+      this.set('buttonElement', element);
     };
   });
 
-  test("rendering a tooltip", async function (assert) {
+  test('rendering a tooltip', async function (assert) {
     await render(hbs`
       <button
         type="button"
@@ -38,18 +38,18 @@ module("Integration | Component | cookbook/tool-tip", function (hooks) {
       {{/if}}
     `);
 
-    assert.dom("[data-test-tooltip]").doesNotExist();
+    assert.dom('[data-test-tooltip]').doesNotExist();
 
-    await triggerEvent("[data-test-button]", "mouseover");
+    await triggerEvent('[data-test-button]', 'mouseover');
 
-    assert.dom("[data-test-tooltip]").exists();
+    assert.dom('[data-test-tooltip]').exists();
 
-    await triggerEvent("[data-test-button]", "mouseleave");
+    await triggerEvent('[data-test-button]', 'mouseleave');
 
-    assert.dom("[data-test-tooltip]").doesNotExist();
+    assert.dom('[data-test-tooltip]').doesNotExist();
   });
 
-  test("wrapping an element with a tooltip component", async function (assert) {
+  test('wrapping an element with a tooltip component', async function (assert) {
     await render(hbs`
       <WithToolTip @content="More Information" data-test-tooltip as |register show hide|>
         <button
@@ -64,14 +64,14 @@ module("Integration | Component | cookbook/tool-tip", function (hooks) {
       </WithToolTip>
     `);
 
-    assert.dom("[data-test-tooltip]").doesNotExist();
+    assert.dom('[data-test-tooltip]').doesNotExist();
 
-    await triggerEvent("[data-test-button]", "mouseover");
+    await triggerEvent('[data-test-button]', 'mouseover');
 
-    assert.dom("[data-test-tooltip]").exists();
+    assert.dom('[data-test-tooltip]').exists();
 
-    await triggerEvent("[data-test-button]", "mouseleave");
+    await triggerEvent('[data-test-button]', 'mouseleave');
 
-    assert.dom("[data-test-tooltip]").doesNotExist();
+    assert.dom('[data-test-tooltip]').doesNotExist();
   });
 });

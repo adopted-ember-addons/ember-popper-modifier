@@ -1,31 +1,31 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
-import { clearRender, render } from "@ember/test-helpers";
-import hbs from "htmlbars-inline-precompile";
-import td from "testdouble";
-import { getPopperForElement } from "ember-popper-modifier";
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { clearRender, render } from '@ember/test-helpers';
+import hbs from 'htmlbars-inline-precompile';
+import td from 'testdouble';
+import { getPopperForElement } from 'ember-popper-modifier';
 
-module("Integration | Modifier | popper", function (hooks) {
+module('Integration | Modifier | popper', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
     this.setTooltipElement = (element) => {
-      this.set("tooltipElement", element);
+      this.set('tooltipElement', element);
     };
 
     this.setReferenceElement = (element) => {
-      this.set("referenceElement", element);
+      this.set('referenceElement', element);
     };
   });
 
   hooks.afterEach(function () {
-    this.set("tooltipElement", undefined);
-    this.set("referenceElement", undefined);
+    this.set('tooltipElement', undefined);
+    this.set('referenceElement', undefined);
 
     td.reset();
   });
 
-  test("it attaches a tooltip to an element", async function (assert) {
+  test('it attaches a tooltip to an element', async function (assert) {
     await render(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
@@ -36,11 +36,11 @@ module("Integration | Modifier | popper", function (hooks) {
     `);
 
     // Check that the tooltip has Popper styles applied
-    assert.dom(this.tooltipElement).hasStyle({ position: "absolute" });
+    assert.dom(this.tooltipElement).hasStyle({ position: 'absolute' });
   });
 
-  test("it can configure named options on the Popper", async function (assert) {
-    this.set("placement", "right");
+  test('it can configure named options on the Popper', async function (assert) {
+    this.set('placement', 'right');
 
     await render(hbs`
       <span {{did-insert this.setTooltipElement}}>
@@ -55,26 +55,26 @@ module("Integration | Modifier | popper", function (hooks) {
       assert
         .dom(this.tooltipElement)
         .hasAttribute(
-          "data-popper-placement",
+          'data-popper-placement',
           this.placement,
-          "Passed placement configuration to Popper"
+          'Passed placement configuration to Popper'
         );
     });
 
-    this.set("placement", "bottom-start");
+    this.set('placement', 'bottom-start');
 
     await assert.waitFor(() => {
       assert
         .dom(this.tooltipElement)
         .hasAttribute(
-          "data-popper-placement",
+          'data-popper-placement',
           this.placement,
-          "Updated Popper options"
+          'Updated Popper options'
         );
     });
   });
 
-  test("the popper instance for the element can be looked up", async function (assert) {
+  test('the popper instance for the element can be looked up', async function (assert) {
     await render(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
@@ -86,11 +86,11 @@ module("Integration | Modifier | popper", function (hooks) {
 
     const popper = getPopperForElement(this.referenceElement);
 
-    assert.ok(popper, "Returns a Popper instance");
+    assert.ok(popper, 'Returns a Popper instance');
   });
 
-  test("it can configure positional options on the Popper", async function (assert) {
-    this.set("popperOptions", { placement: "right" });
+  test('it can configure positional options on the Popper', async function (assert) {
+    this.set('popperOptions', { placement: 'right' });
 
     await render(hbs`
       <span {{did-insert this.setTooltipElement}}>
@@ -105,26 +105,26 @@ module("Integration | Modifier | popper", function (hooks) {
       assert
         .dom(this.tooltipElement)
         .hasAttribute(
-          "data-popper-placement",
+          'data-popper-placement',
           this.popperOptions.placement,
-          "Passed placement configuration to Popper"
+          'Passed placement configuration to Popper'
         );
     });
 
-    this.set("popperOptions", { placement: "bottom-start" });
+    this.set('popperOptions', { placement: 'bottom-start' });
 
     await assert.waitFor(() => {
       assert
         .dom(this.tooltipElement)
         .hasAttribute(
-          "data-popper-placement",
+          'data-popper-placement',
           this.popperOptions.placement,
-          "Updated Popper options"
+          'Updated Popper options'
         );
     });
   });
 
-  test("it destroys the popper instance with the modifier", async function (assert) {
+  test('it destroys the popper instance with the modifier', async function (assert) {
     await render(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
@@ -136,21 +136,21 @@ module("Integration | Modifier | popper", function (hooks) {
 
     const popper = getPopperForElement(this.referenceElement);
 
-    td.replace(popper, "destroy");
+    td.replace(popper, 'destroy');
 
     await clearRender();
 
     assert.verify(
       popper.destroy(),
-      "Destroyed the Popper instance when un-mounting"
+      'Destroyed the Popper instance when un-mounting'
     );
 
     // Make sure we _actually_ destroy the popper instance
     popper.destroy();
   });
 
-  module("adding modifiers", function () {
-    test("can apply a single modifier", async function (assert) {
+  module('adding modifiers', function () {
+    test('can apply a single modifier', async function (assert) {
       await render(hbs`
         <span {{did-insert this.setTooltipElement}}>
           Tooltip!
@@ -165,17 +165,17 @@ module("Integration | Modifier | popper", function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       const offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === "offset"
+        (mod) => mod.name === 'offset'
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 2],
-        "Offset modifier applied"
+        'Offset modifier applied'
       );
     });
 
-    test("can apply an array of modifiers", async function (assert) {
+    test('can apply an array of modifiers', async function (assert) {
       await render(hbs`
         <span {{did-insert this.setTooltipElement}}>
           Tooltip!
@@ -190,17 +190,17 @@ module("Integration | Modifier | popper", function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       const offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === "offset"
+        (mod) => mod.name === 'offset'
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 2],
-        "Offset modifier applied"
+        'Offset modifier applied'
       );
     });
 
-    test("can apply modifiers as positional params", async function (assert) {
+    test('can apply modifiers as positional params', async function (assert) {
       await render(hbs`
         <span {{did-insert this.setTooltipElement}}>
           Tooltip!
@@ -215,17 +215,17 @@ module("Integration | Modifier | popper", function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       const offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === "offset"
+        (mod) => mod.name === 'offset'
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 2],
-        "Offset modifier applied"
+        'Offset modifier applied'
       );
     });
 
-    test("popper is updated when a modifier configuration is updated", async function (assert) {
+    test('popper is updated when a modifier configuration is updated', async function (assert) {
       this.distance = 0;
 
       await render(hbs`
@@ -242,25 +242,25 @@ module("Integration | Modifier | popper", function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       let offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === "offset"
+        (mod) => mod.name === 'offset'
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 0],
-        "Offset modifier applied with initial configuration"
+        'Offset modifier applied with initial configuration'
       );
 
-      this.set("distance", 10);
+      this.set('distance', 10);
 
       offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === "offset"
+        (mod) => mod.name === 'offset'
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 10],
-        "Offset modifier updated to reflect new configuration"
+        'Offset modifier updated to reflect new configuration'
       );
     });
   });

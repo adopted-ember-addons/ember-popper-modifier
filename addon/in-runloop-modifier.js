@@ -1,7 +1,7 @@
 import {
   begin as begingWrappingInRunLoop,
   end as endWrappingInRunLoop,
-} from "@ember/runloop";
+} from '@ember/runloop';
 
 // This set keeps track of whether a particular Popper instance is currently in an update
 // loop that is tracked by the Ember Run Loop
@@ -16,11 +16,11 @@ import {
 // closed, which will cause our application to hang.
 const POPPER_IN_RUN_LOOP = new WeakSet();
 
-const FIRST_PHASE = "beforeRead";
-const LAST_PHASE = "afterWrite";
+const FIRST_PHASE = 'beforeRead';
+const LAST_PHASE = 'afterWrite';
 
 export const beginRunLoopModifier = {
-  name: "ember-runloop-begin",
+  name: 'ember-runloop-begin',
   phase: FIRST_PHASE,
   enabled: true,
   fn({ instance }) {
@@ -33,7 +33,7 @@ export const beginRunLoopModifier = {
 };
 
 export const endRunLoopModifier = {
-  name: "ember-runloop-end",
+  name: 'ember-runloop-end',
   phase: LAST_PHASE,
   enabled: true,
   fn({ instance }) {

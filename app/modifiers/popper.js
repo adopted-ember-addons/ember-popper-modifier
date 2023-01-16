@@ -1,1 +1,1 @@
-export { default } from "ember-popper-modifier/modifiers/popper";
+export { default } from 'ember-popper-modifier/modifiers/popper';
