@@ -80,7 +80,6 @@
     "qunit-dom": "^2.0.0",
     "qunit-wait-for": "^2.0.0",
     "release-it": "^15.5.0",
-    "standard-version": "^9.0.0",
     "testdouble": "^3.16.0",
     "testdouble-qunit": "^3.0.0",
     "webpack": "^5.58.2"
@@ -114,11 +113,6 @@
     "github": {
       "release": true,
       "tokenRef": "GITHUB_AUTH"
-    }
-  },
-  "standard-version": {
-    "scripts": {
-      "postchangelog": "prettier --write CHANGELOG.md"
     }
   }
 }
