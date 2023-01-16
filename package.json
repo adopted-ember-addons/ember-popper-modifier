@@ -24,10 +24,15 @@
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each",
-    "release": "standard-version",
+    "release": "release-it",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
+  },
+  "lint-staged": {
+    "*.hbs": "ember-template-lint",
+    "*.js": "eslint --fix",
+    "*.{css,json,md,yml}": "prettier --write"
   },
   "dependencies": {
     "@popperjs/core": "^2.4.2",
@@ -42,6 +47,7 @@
     "@ember/test-helpers": "^2.2.0",
     "@glimmer/component": "^1.0.1",
     "@glimmer/tracking": "^1.0.0",
+    "@release-it-plugins/lerna-changelog": "^5.0.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~4.9.1",
@@ -73,7 +79,7 @@
     "qunit": "^2.14.0",
     "qunit-dom": "^2.0.0",
     "qunit-wait-for": "^2.0.0",
-    "standard-version": "^9.0.0",
+    "release-it": "^15.5.0",
     "testdouble": "^3.16.0",
     "testdouble-qunit": "^3.0.0",
     "webpack": "^5.58.2"
@@ -81,24 +87,32 @@
   "engines": {
     "node": "14.* || 16.* || >= 18"
   },
+  "volta": {
+    "node": "16.13.0",
+    "yarn": "1.22.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "ember": {
     "edition": "octane"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "lint-staged": {
-    "*.hbs": "ember-template-lint",
-    "*.js": "eslint --fix",
-    "*.{css,json,md,yml}": "prettier --write"
-  },
-  "standard-version": {
-    "scripts": {
-      "postchangelog": "prettier --write CHANGELOG.md"
+  "release-it": {
+    "plugins": {
+      "@release-it-plugins/lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
     }
-  },
-  "volta": {
-    "node": "16.13.0",
-    "yarn": "1.22.4"
   }
 }
