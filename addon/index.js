@@ -1,6 +1,6 @@
 const ELEMENT_TO_POPPER = new WeakMap();
 
-const IS_POPPER_MODIFIER = Symbol("is-popper-modifier");
+const IS_POPPER_MODIFIER = Symbol('is-popper-modifier');
 
 export function getPopperForElement(element) {
   return ELEMENT_TO_POPPER.get(element);

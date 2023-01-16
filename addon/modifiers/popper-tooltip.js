@@ -1,4 +1,4 @@
-import BasePopperModifier from "../-base-popper-modifier";
+import BasePopperModifier from '../-base-popper-modifier';
 
 export default class PopperModifier extends BasePopperModifier {
   get tooltipElement() {
