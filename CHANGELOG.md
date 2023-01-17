@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [2.0.1](https://github.com/alexlafroscia/ember-popper-modifier/compare/v2.0.0...v2.0.1) (2022-02-05)
 
+## v3.0.0 (2023-01-17)
+
+#### :boom: Breaking Change
+
+- [#577](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/577) drop support for node < 14 and other node versions, which reached EOL ([@jelhan](https://github.com/jelhan))
+- [#578](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/578) drop support for Ember < 3.28 ([@jelhan](https://github.com/jelhan))
+
+#### :rocket: Enhancement
+
+- [#594](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/594) support ember-modifier v4 ([@jelhan](https://github.com/jelhan))
+- [#508](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/508) Refactor to use ember-modifier's modify hook and fix deprecation ([@st-h](https://github.com/st-h))
+
+#### :house: Internal
+
+- [#595](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/595) add basic example in dummy app for manual testing ([@jelhan](https://github.com/jelhan))
+- [#592](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/592) upgrade boilerplate files with Ember CLI 4.9 blueprints ([@jelhan](https://github.com/jelhan))
+- [#587](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/587) use standard Prettier configuration in Ember ecosystem ([@jelhan](https://github.com/jelhan))
+- [#586](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/586) upgrade boilerplate files with blueprints from Ember CLI 3.28 ([@jelhan](https://github.com/jelhan))
+- [#581](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/581) Support releases and changelog generation using release-it ([@jelhan](https://github.com/jelhan))
+
+#### Committers: 2
+
+- Jeldrik Hanschke ([@jelhan](https://github.com/jelhan))
+- Steve ([@st-h](https://github.com/st-h))
+
 ## [2.0.0](https://github.com/alexlafroscia/ember-popper-modifier/compare/v1.0.1...v2.0.0) (2022-02-02)
 
 BREAKING CHANGE: `ember-modifier` no longer supports Ember versions lower than 3.24, so `ember-popper-modifier` does not either.
