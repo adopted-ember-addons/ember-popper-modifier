@@ -1,4 +1,4 @@
-import QUnit from "qunit";
+import QUnit from 'qunit';
 
 QUnit.extend(QUnit.assert, {
   greaterThan(

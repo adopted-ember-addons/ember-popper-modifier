@@ -1,5 +1,5 @@
-import { helper } from "@ember/component/helper";
-import { createModifier } from "../index";
+import { helper } from '@ember/component/helper';
+import { createModifier } from '../index';
 
 export function buildPopperModifier([name, positionalOptions], optionsHash) {
   const options = {

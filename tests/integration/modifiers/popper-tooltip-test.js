@@ -1,19 +1,19 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
-import { find, render } from "@ember/test-helpers";
-import hbs from "htmlbars-inline-precompile";
-import { getPopperForElement } from "ember-popper-modifier";
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { find, render } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
+import { getPopperForElement } from 'ember-popper-modifier';
 
-module("Integration | Modifier | popper-tooltip", function (hooks) {
+module('Integration | Modifier | popper-tooltip', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
     this.setReferenceElement = (element) => {
-      this.set("referenceElement", element);
+      this.set('referenceElement', element);
     };
   });
 
-  test("it attaches a tooltip to an element", async function (assert) {
+  test('it attaches a tooltip to an element', async function (assert) {
     await render(hbs`
       <span data-test-tooltip {{popper-tooltip this.referenceElement}}>
         Tooltip!
@@ -24,10 +24,10 @@ module("Integration | Modifier | popper-tooltip", function (hooks) {
     `);
 
     // Check that the tooltip has Popper styles applied
-    assert.dom("[data-test-tooltip]").hasStyle({ position: "absolute" });
+    assert.dom('[data-test-tooltip]').hasStyle({ position: 'absolute' });
   });
 
-  test("the popper instance for the element can be looked up", async function (assert) {
+  test('the popper instance for the element can be looked up', async function (assert) {
     await render(hbs`
       <span data-test-tooltip {{popper-tooltip this.referenceElement}}>
         Tooltip!
@@ -37,9 +37,9 @@ module("Integration | Modifier | popper-tooltip", function (hooks) {
       </span>
     `);
 
-    const element = find("[data-test-tooltip]");
+    const element = find('[data-test-tooltip]');
     const popper = getPopperForElement(element);
 
-    assert.ok(popper, "Returns a Popper instance");
+    assert.ok(popper, 'Returns a Popper instance');
   });
 });

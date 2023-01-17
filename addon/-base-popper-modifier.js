@@ -1,27 +1,27 @@
-import Modifier from "ember-modifier";
-import { registerDestructor } from "@ember/destroyable";
-import { isArray } from "@ember/array";
-import { isEmpty } from "@ember/utils";
-import { assert } from "@ember/debug";
-import { createPopper } from "@popperjs/core";
+import Modifier from 'ember-modifier';
+import { registerDestructor } from '@ember/destroyable';
+import { isArray } from '@ember/array';
+import { isEmpty } from '@ember/utils';
+import { assert } from '@ember/debug';
+import { createPopper } from '@popperjs/core';
 
-import { setPopperForElement, isModifier } from "./index";
+import { setPopperForElement, isModifier } from './index';
 import {
   beginRunLoopModifier as beginRunLoop,
   endRunLoopModifier as endRunLoop,
-} from "./in-runloop-modifier";
+} from './in-runloop-modifier';
 
 export default class PopperModifier extends Modifier {
   /** @type {HTMLElement} */
   // eslint-disable-next-line getter-return
   get tooltipElement() {
-    assert("Must implement `tooltipElement` property", false);
+    assert('Must implement `tooltipElement` property', false);
   }
 
   /** @type {HTMLElement} */
   // eslint-disable-next-line getter-return
   get referenceElement() {
-    assert("Must implement `referenceElement` property", false);
+    assert('Must implement `referenceElement` property', false);
   }
 
   initPopperOptions(positional, named) {
