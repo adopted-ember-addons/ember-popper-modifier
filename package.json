@@ -1,7 +1,7 @@
 {
   "name": "ember-popper-modifier",
   "version": "2.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "An Ember modifier for working with Popper.js.",
   "keywords": [
     "ember-addon"
   ],
