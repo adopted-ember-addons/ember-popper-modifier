@@ -1,6 +1,6 @@
 <span
   {{popper-tooltip @attachTo
-    placement="top"
+    placement=(if @placement @placement "top")
     modifiers=(popper-modifier 'offset'
       options=(hash
         offset=(array 0 8)

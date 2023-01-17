@@ -1,0 +1,59 @@
+<WithToolTip
+  @content="Tooltip rendered at top"
+  @placement="top"
+  as |register show hide|
+>
+  <button
+    type="button"
+    {{did-insert register}}
+    {{on "mouseover" show}}
+    {{on "mouseleave" hide}}
+  >
+    Hover me!
+  </button>
+</WithToolTip>
+
+<WithToolTip
+  @content="Tooltip rendered at bottom"
+  @placement="bottom"
+  as |register show hide|
+>
+  <button
+    type="button"
+    {{did-insert register}}
+    {{on "mouseover" show}}
+    {{on "mouseleave" hide}}
+  >
+    Hover me!
+  </button>
+</WithToolTip>
+
+<WithToolTip
+  @content="Tooltip rendered on left side"
+  @placement="left"
+  as |register show hide|
+>
+  <button
+    type="button"
+    {{did-insert register}}
+    {{on "mouseover" show}}
+    {{on "mouseleave" hide}}
+  >
+    Hover me!
+  </button>
+</WithToolTip>
+
+<WithToolTip
+  @content="Tooltip rendered on right side"
+  @placement="right"
+  as |register show hide|
+>
+  <button
+    type="button"
+    {{did-insert register}}
+    {{on "mouseover" show}}
+    {{on "mouseleave" hide}}
+  >
+    Hover me!
+  </button>
+</WithToolTip>
