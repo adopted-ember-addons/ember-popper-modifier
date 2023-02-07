@@ -1,34 +1,48 @@
-const ELEMENT_TO_POPPER = new WeakMap();
+import {
+  offset,
+  shift,
+  flip,
+  arrow,
+  size,
+  autoPlacement,
+  hide,
+  inline,
+} from '@floating-ui/dom';
 
-const IS_POPPER_MODIFIER = Symbol('is-popper-modifier');
+const ELEMENT_TO_COMPUTE_POSITION_RETURN = new WeakMap();
+const IS_FLOATING_UI_MIDDLEWARE = Symbol('is-floating-ui-middleware');
 
-export function getPopperForElement(element) {
-  return ELEMENT_TO_POPPER.get(element);
+export function getComputePositionPromiseForElement(element) {
+  return ELEMENT_TO_COMPUTE_POSITION_RETURN.get(element);
 }
 
-export function setPopperForElement(element, popperInstance) {
-  ELEMENT_TO_POPPER.set(element, popperInstance);
+export function setComputePositionPromiseForElement(
+  element,
+  computePositionReturn
+) {
+  ELEMENT_TO_COMPUTE_POSITION_RETURN.set(element, computePositionReturn);
 }
-
 /**
- * Mark an object as a Popper modifier
+ * Mark an object as a Floating UI middleware
  *
  * @param {object} configuration
  * @return {object}
  */
-export function createModifier(configuration) {
+export function createMiddleware(configuration) {
   return {
-    [IS_POPPER_MODIFIER]: true,
+    [IS_FLOATING_UI_MIDDLEWARE]: true,
     ...configuration,
   };
 }
 
 /**
- * Check whether an object is a Popper modifier
+ * Check whether an object is a Floating UI middleware
  *
  * @param {object} configuration
  * @return {boolean}
  */
-export function isModifier(configuration) {
-  return configuration[IS_POPPER_MODIFIER] === true;
+export function isMiddleware(configuration) {
+  return configuration[IS_FLOATING_UI_MIDDLEWARE] === true;
 }
+
+export { offset, shift, flip, arrow, size, autoPlacement, hide, inline };

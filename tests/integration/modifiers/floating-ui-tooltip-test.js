@@ -2,9 +2,9 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { find, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { getPopperForElement } from 'ember-popper-modifier';
+import { getComputePositionPromiseForElement } from 'ember-popper-modifier';
 
-module('Integration | Modifier | popper-tooltip', function (hooks) {
+module('Integration | Modifier | floating-ui-tooltip', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
@@ -15,7 +15,11 @@ module('Integration | Modifier | popper-tooltip', function (hooks) {
 
   test('it attaches a tooltip to an element', async function (assert) {
     await render(hbs`
-      <span data-test-tooltip {{popper-tooltip this.referenceElement}}>
+      <span
+        style="position: absolute; top: 0; left: 0;"
+        data-test-tooltip
+        {{floating-ui-tooltip this.referenceElement}}
+      >
         Tooltip!
       </span>
       <span data-test-reference {{did-insert this.setReferenceElement}}>
@@ -23,13 +27,15 @@ module('Integration | Modifier | popper-tooltip', function (hooks) {
       </span>
     `);
 
-    // Check that the tooltip has Popper styles applied
-    assert.dom('[data-test-tooltip]').hasStyle({ position: 'absolute' });
+    // Check that the tooltip has Floating UI styles applied
+    assert
+      .dom('[data-test-tooltip]')
+      .doesNotHaveStyle({ top: '0px', left: '0px' });
   });
 
-  test('the popper instance for the element can be looked up', async function (assert) {
+  test('the computePosition return for the element can be looked up', async function (assert) {
     await render(hbs`
-      <span data-test-tooltip {{popper-tooltip this.referenceElement}}>
+      <span data-test-tooltip {{floating-ui-tooltip this.referenceElement}}>
         Tooltip!
       </span>
       <span data-test-reference {{did-insert this.setReferenceElement}}>
@@ -38,8 +44,10 @@ module('Integration | Modifier | popper-tooltip', function (hooks) {
     `);
 
     const element = find('[data-test-tooltip]');
-    const popper = getPopperForElement(element);
+    const computePositionReturn = await getComputePositionPromiseForElement(
+      element
+    );
 
-    assert.ok(popper, 'Returns a Popper instance');
+    assert.ok(computePositionReturn, 'Returns a computePosition result');
   });
 });

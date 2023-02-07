@@ -39,7 +39,7 @@
     "*.{css,json,md,yml}": "prettier --write"
   },
   "dependencies": {
-    "@popperjs/core": "^2.4.2",
+    "@floating-ui/dom": "^1.2.0",
     "ember-auto-import": "^2.5.0",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.1.1",
@@ -85,8 +85,6 @@
     "qunit-dom": "^2.0.0",
     "qunit-wait-for": "^2.0.0",
     "release-it": "^15.5.0",
-    "testdouble": "^3.16.0",
-    "testdouble-qunit": "^3.0.0",
     "webpack": "^5.75.0"
   },
   "peerDependencies": {

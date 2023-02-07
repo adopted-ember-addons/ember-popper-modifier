@@ -1,18 +1,16 @@
-#arrow,
-#arrow::before {
+#arrow {
   position: absolute;
   width: 8px;
   height: 8px;
-  z-index: -1;
-}
-
-#arrow::before {
-  content: "";
   transform: rotate(45deg);
   background: #333;
 }
 
 #tooltip {
+  width: max-content;
+  position: absolute;
+  top: 0;
+  left: 0;
   background: #333;
   color: white;
   font-weight: bold;
@@ -21,18 +19,18 @@
   border-radius: 4px;
 }
 
-#tooltip[data-popper-placement^="top"] > #arrow {
+#tooltip[data-floating-ui-placement^="top"] > #arrow {
   bottom: -4px;
 }
 
-#tooltip[data-popper-placement^="bottom"] > #arrow {
+#tooltip[data-floating-ui-placement^="bottom"] > #arrow {
   top: -4px;
 }
 
-#tooltip[data-popper-placement^="left"] > #arrow {
+#tooltip[data-floating-ui-placement^="left"] > #arrow {
   right: -4px;
 }
 
-#tooltip[data-popper-placement^="right"] > #arrow {
+#tooltip[data-floating-ui-placement^="right"] > #arrow {
   left: -4px;
 }

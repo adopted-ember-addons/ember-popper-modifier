@@ -1,15 +1,24 @@
-<span
-  {{popper-tooltip @attachTo
-    placement=(if @placement @placement "top")
-    modifiers=(popper-modifier 'offset'
-      options=(hash
-        offset=(array 0 8)
+{{#let (if @placement @placement "top") as |placement|}}
+  <span
+    {{floating-ui-tooltip @attachTo
+      placement=placement
+      middleware=(array
+        (floating-ui-middleware 'offset' 8)
+        (floating-ui-middleware 'arrow'
+          options=(hash
+            element=this.arrowElement
+          )
+        )
       )
-    )
-  }}
-  id="tooltip"
-  ...attributes
->
-  <div id="arrow" data-popper-arrow></div>
-  {{yield}}
+      autoUpdateOptions=(hash
+        ancestorResize=true
+      )
+    }}
+    id="tooltip"
+    data-floating-ui-placement={{placement}}
+    ...attributes
+  >
+  <div id="arrow" data-floating-ui-arrow {{did-insert this.setArrowElement}}></div>
+    {{yield}}
 </span>
+{{/let}}

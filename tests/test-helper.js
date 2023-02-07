@@ -7,7 +7,6 @@ import { start } from 'ember-qunit';
 
 import './assertions/comparisons';
 import './assertions/dom';
-import './assertions/testdouble';
 import './assertions/wait-for';
 
 setApplication(Application.create(config.APP));
