@@ -16,6 +16,7 @@ module('Integration | Modifier | floating-ui-tooltip', function (hooks) {
   test('it attaches a tooltip to an element', async function (assert) {
     await render(hbs`
       <span
+        {{!-- template-lint-disable no-inline-styles --}}
         style="position: absolute; top: 0; left: 0;"
         data-test-tooltip
         {{floating-ui-tooltip this.referenceElement}}

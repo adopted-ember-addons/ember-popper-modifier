@@ -24,6 +24,7 @@ module('Integration | Modifier | floating-ui', function (hooks) {
 
   test('it attaches a tooltip to an element', async function (assert) {
     await render(hbs`
+      {{!-- template-lint-disable no-inline-styles --}}
       <span style="position: absolute; top: 0; left: 0;" {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
@@ -40,7 +41,7 @@ module('Integration | Modifier | floating-ui', function (hooks) {
 
   test('the computePositionReturn for the element can be looked up', async function (assert) {
     await render(hbs`
-      <span style="position: absolute" {{did-insert this.setTooltipElement}}>
+      <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
       <span {{did-insert this.setReferenceElement}} {{floating-ui this.tooltipElement}}>
