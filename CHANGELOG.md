@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [2.0.1](https://github.com/alexlafroscia/ember-popper-modifier/compare/v2.0.0...v2.0.1) (2022-02-05)
 
+## v4.0.0 (2023-11-05)
+
+#### :boom: Breaking Change
+
+- [#772](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/772) Drop support for Ember < 4.8 ([@jelhan](https://github.com/jelhan))
+- [#771](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/771) drop support for node 14 and 16 ([@jelhan](https://github.com/jelhan))
+- [#774](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/774) drop support for ember-modifier v3 ([@jelhan](https://github.com/jelhan))
+- [#775](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/775) drop support for Ember classic optional feature flags ([@jelhan](https://github.com/jelhan))
+
+#### :rocket: Enhancement
+
+- [#770](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/770) Support Ember v5 ([@timmorey](https://github.com/timmorey))
+
+#### :house: Internal
+
+- [#777](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/777) upgrade with Ember CLI v5.4 blueprints ([@jelhan](https://github.com/jelhan))
+- [#610](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/610) Add '@ember/string' dev dependency to avoid deprecation warning ([@pzubar](https://github.com/pzubar))
+
+#### Committers: 3
+
+- Jeldrik Hanschke ([@jelhan](https://github.com/jelhan))
+- Petro Zubar ([@pzubar](https://github.com/pzubar))
+- Timothy Morey ([@timmorey](https://github.com/timmorey))
+
 ## v3.0.0 (2023-01-17)
 
 #### :boom: Breaking Change
