@@ -17,12 +17,12 @@ function getPopperOptions(positional, named) {
 
   // Positional args that are not modifiers should be treated as full "options" objects
   const allPositionalOptions = positionalArguments.filter(
-    (arg) => !isModifier(arg)
+    (arg) => !isModifier(arg),
   );
 
   // Positional args that are modifiers will extend the rest of the configuration
   const allPositionalModifiers = positionalArguments.filter((arg) =>
-    isModifier(arg)
+    isModifier(arg),
   );
 
   const { ...namedOptions } = named;
@@ -75,7 +75,7 @@ export default class PopperModifier extends Modifier {
       this.popper = createPopper(
         this.referenceElement,
         this.tooltipElement,
-        popperOptions
+        popperOptions,
       );
 
       setPopperForElement(this.primaryElement, this.popper);
