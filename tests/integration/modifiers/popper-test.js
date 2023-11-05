@@ -57,7 +57,7 @@ module('Integration | Modifier | popper', function (hooks) {
         .hasAttribute(
           'data-popper-placement',
           this.placement,
-          'Passed placement configuration to Popper'
+          'Passed placement configuration to Popper',
         );
     });
 
@@ -69,7 +69,7 @@ module('Integration | Modifier | popper', function (hooks) {
         .hasAttribute(
           'data-popper-placement',
           this.placement,
-          'Updated Popper options'
+          'Updated Popper options',
         );
     });
   });
@@ -107,7 +107,7 @@ module('Integration | Modifier | popper', function (hooks) {
         .hasAttribute(
           'data-popper-placement',
           this.popperOptions.placement,
-          'Passed placement configuration to Popper'
+          'Passed placement configuration to Popper',
         );
     });
 
@@ -119,7 +119,7 @@ module('Integration | Modifier | popper', function (hooks) {
         .hasAttribute(
           'data-popper-placement',
           this.popperOptions.placement,
-          'Updated Popper options'
+          'Updated Popper options',
         );
     });
   });
@@ -142,7 +142,7 @@ module('Integration | Modifier | popper', function (hooks) {
 
     assert.verify(
       popper.destroy(),
-      'Destroyed the Popper instance when un-mounting'
+      'Destroyed the Popper instance when un-mounting',
     );
 
     // Make sure we _actually_ destroy the popper instance
@@ -165,13 +165,13 @@ module('Integration | Modifier | popper', function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       const offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === 'offset'
+        (mod) => mod.name === 'offset',
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 2],
-        'Offset modifier applied'
+        'Offset modifier applied',
       );
     });
 
@@ -190,13 +190,13 @@ module('Integration | Modifier | popper', function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       const offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === 'offset'
+        (mod) => mod.name === 'offset',
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 2],
-        'Offset modifier applied'
+        'Offset modifier applied',
       );
     });
 
@@ -215,13 +215,13 @@ module('Integration | Modifier | popper', function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       const offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === 'offset'
+        (mod) => mod.name === 'offset',
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 2],
-        'Offset modifier applied'
+        'Offset modifier applied',
       );
     });
 
@@ -242,25 +242,25 @@ module('Integration | Modifier | popper', function (hooks) {
 
       const popper = getPopperForElement(this.referenceElement);
       let offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === 'offset'
+        (mod) => mod.name === 'offset',
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 0],
-        'Offset modifier applied with initial configuration'
+        'Offset modifier applied with initial configuration',
       );
 
       this.set('distance', 10);
 
       offsetModifier = popper.state.orderedModifiers.find(
-        (mod) => mod.name === 'offset'
+        (mod) => mod.name === 'offset',
       );
 
       assert.deepEqual(
         offsetModifier.options.offset,
         [0, 10],
-        'Offset modifier updated to reflect new configuration'
+        'Offset modifier updated to reflect new configuration',
       );
     });
   });

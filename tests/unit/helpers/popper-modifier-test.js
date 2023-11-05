@@ -11,7 +11,7 @@ module('Unit | Helper | popper-modifier', function (hooks) {
     assert.deepEqual(
       result,
       { name: 'foo', options: {} },
-      'It creates a modifier-like object'
+      'It creates a modifier-like object',
     );
   });
 
@@ -21,7 +21,7 @@ module('Unit | Helper | popper-modifier', function (hooks) {
     assert.deepEqual(
       result,
       { name: 'foo', options: { foo: 'bar' } },
-      'It creates a modifier-like object'
+      'It creates a modifier-like object',
     );
   });
 
@@ -31,7 +31,7 @@ module('Unit | Helper | popper-modifier', function (hooks) {
     assert.deepEqual(
       result,
       { name: 'foo', options: { foo: 'bar' } },
-      'It creates a modifier-like object'
+      'It creates a modifier-like object',
     );
   });
 
@@ -41,7 +41,7 @@ module('Unit | Helper | popper-modifier', function (hooks) {
     assert.deepEqual(
       result,
       { name: 'foo', options: { foo: 'baz' } },
-      'The named option overrides the positional one'
+      'The named option overrides the positional one',
     );
   });
 });
