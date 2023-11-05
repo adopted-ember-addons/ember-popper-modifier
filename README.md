@@ -6,7 +6,7 @@ An Ember [modifier](https://guides.emberjs.com/release/components/template-lifec
 
 - Ember.js v4.8 or above
 - Ember CLI v4.8 or above
-- Node.js v14 or above
+- Node.js v18 or above
 
 ## Installation
 
