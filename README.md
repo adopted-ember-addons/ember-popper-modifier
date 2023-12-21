@@ -4,17 +4,10 @@ An Ember [modifier](https://guides.emberjs.com/release/components/template-lifec
 
 ## Compatibility
 
-<<<<<<< HEAD
-
-- Ember.js v4.8 or above
-- Ember CLI v4.8 or above
-- # Node.js v18 or above
-
 * Ember.js v4.8 or above
 * Ember CLI v4.8 or above
 * Node.js v18 or above
 
-> > > > > > > eaf1c6d (v4.9.2...v5.4.0)
 
 ## Installation
 
