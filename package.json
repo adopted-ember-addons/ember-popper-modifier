@@ -22,7 +22,7 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "lint:json": "prettier --write '**/*.json'",
+    "lint:json": "prettier --check '**/*.json'",
     "lint:json:fix": "prettier --write '**/*.json'",
     "lint:md": "prettier --check '**/*.md'",
     "lint:md:fix": "prettier --write '**/*.md'",
