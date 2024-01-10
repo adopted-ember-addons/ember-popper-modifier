@@ -11331,7 +11331,7 @@ testdouble-qunit@^3.0.0:
   resolved "https://registry.yarnpkg.com/testdouble-qunit/-/testdouble-qunit-3.0.3.tgz#eeaebab38e17c48c5784196ed5137cc73f178bd4"
   integrity sha512-HcDEL9V/XLMWW8gQ+T6BvCIde+6bFW4nXI3FSjcDJYRSSi8KNIbm1tcTediBIIXjsJ7ZtyavpkSlMew8g766gA==
 
-testdouble@^3.16.0:
+testdouble@3.20.0:
   version "3.20.0"
   resolved "https://registry.yarnpkg.com/testdouble/-/testdouble-3.20.0.tgz#a035ad0f185b9e68542beaa75e63bc796d6bf16c"
   integrity sha512-P/wfyKF1P1AE8/VM6PXCtSQJyOgPObOg191TlVZnoSQw/hhFXvxIFM5yGJ7Bf9Hs0FX8677YCv3esVgPGSeTLg==
