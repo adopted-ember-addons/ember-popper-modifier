@@ -23,7 +23,7 @@
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "lint:json": "prettier --check '**/*.json'",
-    "lint:json": "prettier --write '**/*.json'",
+    "lint:json:fix": "prettier --write '**/*.json'",
     "lint:md": "prettier --check '**/*.md'",
     "lint:md:fix": "prettier --write '**/*.md'",
     "lint:yml": "prettier --check '**/*.yml'",
@@ -95,7 +95,7 @@
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-prettier": "^4.0.2",
-    "testdouble": "^3.16.0",
+    "testdouble": "3.20.0",
     "testdouble-qunit": "^3.0.0",
     "webpack": "^5.89.0"
   },
