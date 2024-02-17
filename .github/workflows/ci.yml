@@ -34,10 +34,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: wyvox/action-setup-pnpm@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-          no-lockfile: true
+          cache: pnpm
+      - name: Install Dependencies
+        run: pnpm install --no-lockfile
       - name: Run Tests
         run: pnpm test:ember
 
