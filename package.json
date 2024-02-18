@@ -29,6 +29,7 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
+    "build:types": "glint --declaration",
     "lint": "concurrently \"npm:lint:*(!fix)\" --names \"lint:\"",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:css:fix": "concurrently \"npm:lint:css -- --fix\"",
@@ -50,6 +51,7 @@
     "test:ember-compatibility": "ember try:each",
     "release": "release-it",
     "postinstall": "husky install",
+    "prepack": "pnpm run build:types",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
   },
