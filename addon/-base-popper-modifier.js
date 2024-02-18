@@ -37,8 +37,8 @@ function getPopperOptions(positional, named) {
   const modifiers = isEmpty(options.modifiers)
     ? []
     : isArray(options.modifiers)
-    ? options.modifiers
-    : [options.modifiers];
+      ? options.modifiers
+      : [options.modifiers];
 
   // Add runloop integration and positional modifiers to the array of modifiers
   options.modifiers = [
