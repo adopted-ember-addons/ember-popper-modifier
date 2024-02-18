@@ -1,11 +1,18 @@
 import {
   type Instance as PopperInstance,
   type Modifier as PopperModifier,
+  type Options as PopperOptions,
 } from '@popperjs/core';
 
 const ELEMENT_TO_POPPER: WeakMap<Element, PopperInstance> = new WeakMap();
 
 const IS_POPPER_MODIFIER = Symbol('is-popper-modifier');
+
+export interface CustomPopperOptions extends Omit<PopperOptions, 'modifiers'> {
+  modifiers:
+    | PopperOptions['modifiers']
+    | Partial<PopperModifier<unknown, { [key: string]: unknown }>>;
+}
 
 export type PopperModifierDescription = Partial<
   PopperModifier<unknown, { [key: string]: unknown }>
@@ -37,7 +44,7 @@ export function setPopperForElement(
  * @return {object}
  */
 export function createModifier(
-  configuration: Partial<PopperModifier<unknown, { [key: string]: unknown }>>,
+  configuration: CustomPopperOptions['modifiers'],
 ): PopperModifierDescription {
   return {
     [IS_POPPER_MODIFIER]: true,

@@ -11,6 +11,7 @@ import {
 import {
   setPopperForElement,
   isModifier,
+  type CustomPopperOptions,
   type PopperModifierDescription,
 } from './index';
 import {
@@ -23,9 +24,9 @@ export interface PopperSignature {
   Args: {
     Positional: [
       HTMLElement,
-      ...(Partial<PopperOptions> | PopperModifierDescription)[],
+      ...(Partial<CustomPopperOptions> | PopperModifierDescription)[],
     ];
-    Named: Partial<PopperOptions>;
+    Named: Partial<CustomPopperOptions>;
   };
   Element: HTMLElement;
 }
@@ -39,8 +40,8 @@ function getPopperOptions(
 
   // Positional args that are not modifiers should be treated as full "options" objects
   const allPositionalOptions = positionalArguments.filter<
-    Partial<PopperOptions>
-  >((arg): arg is Partial<PopperOptions> => !isModifier(arg));
+    Partial<CustomPopperOptions>
+  >((arg): arg is Partial<CustomPopperOptions> => !isModifier(arg));
 
   // Positional args that are modifiers will extend the rest of the configuration
   const allPositionalModifiers =
@@ -49,28 +50,25 @@ function getPopperOptions(
     );
 
   const { ...namedOptions } = named;
-  const options: Partial<PopperOptions> = {
+  const customOptions: Partial<CustomPopperOptions> = {
     ...allPositionalOptions.reduce((acc, curr) => {
       return { ...acc, ...curr };
     }, {}),
     ...namedOptions,
   };
-
-  // Ensure that the `modifiers` is always an array
-  const modifiers =
-    options.modifiers === undefined || isEmpty(options.modifiers)
-      ? []
-      : isArray(options.modifiers)
-        ? options.modifiers
-        : [options.modifiers];
+  const options: Partial<PopperOptions> = {
+    ...customOptions,
+    // Ensure that the `modifiers` is always an array
+    modifiers:
+      customOptions.modifiers === undefined || isEmpty(customOptions.modifiers)
+        ? []
+        : isArray(customOptions.modifiers)
+          ? customOptions.modifiers
+          : [customOptions.modifiers],
+  };
 
   // Add runloop integration and positional modifiers to the array of modifiers
-  options.modifiers = [
-    ...modifiers,
-    ...allPositionalModifiers,
-    beginRunLoop,
-    endRunLoop,
-  ];
+  options.modifiers?.push(...allPositionalModifiers, beginRunLoop, endRunLoop);
 
   return options;
 }
