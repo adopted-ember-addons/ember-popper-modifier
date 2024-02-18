@@ -1,7 +1,9 @@
 {{yield this.setReferenceElement this.showTooltip this.hideTooltip}}
 
 {{#if this.tooltipVisible}}
-  <ToolTip @attachTo={{this.referenceElement}} @placement={{@placement}} ...attributes>
-    {{@content}}
-  </ToolTip>
+  {{#if this.referenceElement}}
+    <ToolTip @attachTo={{this.referenceElement}} @placement={{@placement}} ...attributes>
+      {{@content}}
+    </ToolTip>
+  {{/if}}
 {{/if}}

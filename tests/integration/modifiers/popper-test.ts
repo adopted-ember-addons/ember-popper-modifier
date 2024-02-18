@@ -1,14 +1,29 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { clearRender, render } from '@ember/test-helpers';
+import { clearRender, render, type TestContext } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import td from 'testdouble';
 import { getPopperForElement } from 'ember-popper-modifier';
+import type {
+  Options as PopperOptions,
+  Placement as PopperPlacement,
+} from '@popperjs/core';
+
+interface Context extends TestContext {
+  distance: number;
+  placement: PopperPlacement;
+  popperOptions: PopperOptions;
+  referenceElement: HTMLElement;
+  tooltipElement: HTMLElement;
+
+  setReferenceElement: (element: HTMLElement) => void;
+  setTooltipElement: (element: HTMLElement) => void;
+}
 
 module('Integration | Modifier | popper', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function () {
+  hooks.beforeEach(function (this: Context) {
     this.setTooltipElement = (element) => {
       this.set('tooltipElement', element);
     };
@@ -25,8 +40,8 @@ module('Integration | Modifier | popper', function (hooks) {
     td.reset();
   });
 
-  test('it attaches a tooltip to an element', async function (assert) {
-    await render(hbs`
+  test('it attaches a tooltip to an element', async function (this: Context, assert) {
+    await render<Context>(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
@@ -39,10 +54,10 @@ module('Integration | Modifier | popper', function (hooks) {
     assert.dom(this.tooltipElement).hasStyle({ position: 'absolute' });
   });
 
-  test('it can configure named options on the Popper', async function (assert) {
+  test('it can configure named options on the Popper', async function (this: Context, assert) {
     this.set('placement', 'right');
 
-    await render(hbs`
+    await render<Context>(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
@@ -74,8 +89,8 @@ module('Integration | Modifier | popper', function (hooks) {
     });
   });
 
-  test('the popper instance for the element can be looked up', async function (assert) {
-    await render(hbs`
+  test('the popper instance for the element can be looked up', async function (this: Context, assert) {
+    await render<Context>(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
@@ -89,10 +104,10 @@ module('Integration | Modifier | popper', function (hooks) {
     assert.ok(popper, 'Returns a Popper instance');
   });
 
-  test('it can configure positional options on the Popper', async function (assert) {
+  test('it can configure positional options on the Popper', async function (this: Context, assert) {
     this.set('popperOptions', { placement: 'right' });
 
-    await render(hbs`
+    await render<Context>(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
@@ -124,8 +139,8 @@ module('Integration | Modifier | popper', function (hooks) {
     });
   });
 
-  test('it destroys the popper instance with the modifier', async function (assert) {
-    await render(hbs`
+  test('it destroys the popper instance with the modifier', async function (this: Context, assert) {
+    await render<Context>(hbs`
       <span {{did-insert this.setTooltipElement}}>
         Tooltip!
       </span>
@@ -150,8 +165,8 @@ module('Integration | Modifier | popper', function (hooks) {
   });
 
   module('adding modifiers', function () {
-    test('can apply a single modifier', async function (assert) {
-      await render(hbs`
+    test('can apply a single modifier', async function (this: Context, assert) {
+      await render<Context>(hbs`
         <span {{did-insert this.setTooltipElement}}>
           Tooltip!
         </span>
@@ -169,14 +184,14 @@ module('Integration | Modifier | popper', function (hooks) {
       );
 
       assert.deepEqual(
-        offsetModifier.options.offset,
+        offsetModifier?.options?.['offset'],
         [0, 2],
         'Offset modifier applied',
       );
     });
 
-    test('can apply an array of modifiers', async function (assert) {
-      await render(hbs`
+    test('can apply an array of modifiers', async function (this: Context, assert) {
+      await render<Context>(hbs`
         <span {{did-insert this.setTooltipElement}}>
           Tooltip!
         </span>
@@ -194,14 +209,14 @@ module('Integration | Modifier | popper', function (hooks) {
       );
 
       assert.deepEqual(
-        offsetModifier.options.offset,
+        offsetModifier?.options?.['offset'],
         [0, 2],
         'Offset modifier applied',
       );
     });
 
-    test('can apply modifiers as positional params', async function (assert) {
-      await render(hbs`
+    test('can apply modifiers as positional params', async function (this: Context, assert) {
+      await render<Context>(hbs`
         <span {{did-insert this.setTooltipElement}}>
           Tooltip!
         </span>
@@ -219,16 +234,16 @@ module('Integration | Modifier | popper', function (hooks) {
       );
 
       assert.deepEqual(
-        offsetModifier.options.offset,
+        offsetModifier?.options?.['offset'],
         [0, 2],
         'Offset modifier applied',
       );
     });
 
-    test('popper is updated when a modifier configuration is updated', async function (assert) {
+    test('popper is updated when a modifier configuration is updated', async function (this: Context, assert) {
       this.distance = 0;
 
-      await render(hbs`
+      await render<Context>(hbs`
         <span {{did-insert this.setTooltipElement}}>
           Tooltip!
         </span>
@@ -246,7 +261,7 @@ module('Integration | Modifier | popper', function (hooks) {
       );
 
       assert.deepEqual(
-        offsetModifier.options.offset,
+        offsetModifier?.options?.['offset'],
         [0, 0],
         'Offset modifier applied with initial configuration',
       );
@@ -258,7 +273,7 @@ module('Integration | Modifier | popper', function (hooks) {
       );
 
       assert.deepEqual(
-        offsetModifier.options.offset,
+        offsetModifier?.options?.['offset'],
         [0, 10],
         'Offset modifier updated to reflect new configuration',
       );

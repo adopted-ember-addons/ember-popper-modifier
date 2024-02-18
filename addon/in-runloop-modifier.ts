@@ -2,6 +2,10 @@ import {
   begin as begingWrappingInRunLoop,
   end as endWrappingInRunLoop,
 } from '@ember/runloop';
+import {
+  type Instance as PopperInstance,
+  type Modifier as PopperModifier,
+} from '@popperjs/core';
 
 // This set keeps track of whether a particular Popper instance is currently in an update
 // loop that is tracked by the Ember Run Loop
@@ -14,16 +18,18 @@ import {
 // because the number of "starts" and "ends" of the Popper update look do not always match;
 // if we "start" again before we have "ended", then we can open an Ember run loop that is never
 // closed, which will cause our application to hang.
-const POPPER_IN_RUN_LOOP = new WeakSet();
+const POPPER_IN_RUN_LOOP: WeakSet<PopperInstance> = new WeakSet();
 
 const FIRST_PHASE = 'beforeRead';
 const LAST_PHASE = 'afterWrite';
 
-export const beginRunLoopModifier = {
+export const beginRunLoopModifier: Partial<
+  PopperModifier<'ember-runloop-begin', { [key: string]: unknown }>
+> = {
   name: 'ember-runloop-begin',
   phase: FIRST_PHASE,
   enabled: true,
-  fn({ instance }) {
+  fn({ instance }: { instance: PopperInstance }) {
     if (!POPPER_IN_RUN_LOOP.has(instance)) {
       POPPER_IN_RUN_LOOP.add(instance);
 
@@ -32,11 +38,13 @@ export const beginRunLoopModifier = {
   },
 };
 
-export const endRunLoopModifier = {
+export const endRunLoopModifier: Partial<
+  PopperModifier<'ember-runloop-end', { [key: string]: unknown }>
+> = {
   name: 'ember-runloop-end',
   phase: LAST_PHASE,
   enabled: true,
-  fn({ instance }) {
+  fn({ instance }: { instance: PopperInstance }) {
     if (POPPER_IN_RUN_LOOP.has(instance)) {
       POPPER_IN_RUN_LOOP.delete(instance);
 
