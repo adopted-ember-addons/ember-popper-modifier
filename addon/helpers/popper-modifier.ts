@@ -4,7 +4,7 @@ import type { Modifier as PopperModifier } from '@popperjs/core';
 
 type PopperModifierOptions = Partial<
   PopperModifier<unknown, { [key: string]: unknown }>
->;
+>['options'];
 
 export interface PopperSignature {
   Args: {
