@@ -78,8 +78,8 @@ export default abstract class PopperModifier extends Modifier<PopperSignature> {
   primaryElement: HTMLElement | null = null;
   secondaryElement: HTMLElement | null = null;
 
-  abstract get tooltipElement(): HTMLElement;
-  abstract get referenceElement(): HTMLElement;
+  abstract get tooltipElement(): HTMLElement | null;
+  abstract get referenceElement(): HTMLElement | null;
 
   modify(
     element: PopperSignature['Element'],
