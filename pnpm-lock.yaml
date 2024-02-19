@@ -158,8 +158,8 @@ devDependencies:
     specifier: ^4.1.0
     version: 4.1.0(prettier@3.2.5)(stylelint@15.11.0)
   testdouble:
-    specifier: 3.20.0
-    version: 3.20.0
+    specifier: 3.20.1
+    version: 3.20.1
   testdouble-qunit:
     specifier: ^3.0.0
     version: 3.0.3
@@ -11708,8 +11708,8 @@ packages:
     resolution: {integrity: sha512-HcDEL9V/XLMWW8gQ+T6BvCIde+6bFW4nXI3FSjcDJYRSSi8KNIbm1tcTediBIIXjsJ7ZtyavpkSlMew8g766gA==}
     dev: true
 
-  /testdouble@3.20.0:
-    resolution: {integrity: sha512-P/wfyKF1P1AE8/VM6PXCtSQJyOgPObOg191TlVZnoSQw/hhFXvxIFM5yGJ7Bf9Hs0FX8677YCv3esVgPGSeTLg==}
+  /testdouble@3.20.1:
+    resolution: {integrity: sha512-D9Or6ayxr16dPPEkmXyGb8ow7VcQjUzuYFUxPTkx2FdSkn5Z6EC6cxQHwEGhedmE30FAJOYiAW+r7XXg6FmYOQ==}
     engines: {node: '>= 16'}
     dependencies:
       lodash: 4.17.21
