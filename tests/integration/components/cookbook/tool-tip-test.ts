@@ -1,12 +1,20 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, triggerEvent } from '@ember/test-helpers';
+import { render, triggerEvent, type TestContext } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+
+interface Context extends TestContext {
+  buttonElement: HTMLButtonElement | undefined;
+  showTooltip: boolean;
+  handleMouseOver: () => void;
+  handleMouseLeave: () => void;
+  setButtonElement: (element: HTMLButtonElement) => void;
+}
 
 module('Integration | Component | cookbook/tool-tip', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function () {
+  hooks.beforeEach(function (this: Context) {
     this.showTooltip = false;
     this.handleMouseOver = () => {
       this.set('showTooltip', true);
@@ -20,7 +28,7 @@ module('Integration | Component | cookbook/tool-tip', function (hooks) {
   });
 
   test('rendering a tooltip', async function (assert) {
-    await render(hbs`
+    await render<Context>(hbs`
       <button
         type="button"
         data-test-button
@@ -32,9 +40,11 @@ module('Integration | Component | cookbook/tool-tip', function (hooks) {
       </button>
 
       {{#if this.showTooltip}}
-        <ToolTip @attachTo={{this.buttonElement}} data-test-tooltip>
-          More Information
-        </ToolTip>
+        {{#if this.buttonElement}}
+          <ToolTip @attachTo={{this.buttonElement}} data-test-tooltip>
+            More Information
+          </ToolTip>
+        {{/if}}
       {{/if}}
     `);
 
@@ -50,7 +60,7 @@ module('Integration | Component | cookbook/tool-tip', function (hooks) {
   });
 
   test('wrapping an element with a tooltip component', async function (assert) {
-    await render(hbs`
+    await render<Context>(hbs`
       <WithToolTip @content="More Information" data-test-tooltip as |register show hide|>
         <button
           type="button"

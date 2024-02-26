@@ -1,11 +1,11 @@
 import BasePopperModifier from '../-base-popper-modifier';
 
 export default class PopperModifier extends BasePopperModifier {
-  get tooltipElement() {
+  get tooltipElement(): HTMLElement | null {
     return this.primaryElement;
   }
 
-  get referenceElement() {
+  get referenceElement(): HTMLElement | null {
     return this.secondaryElement;
   }
 }
