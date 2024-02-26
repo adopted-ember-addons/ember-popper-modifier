@@ -1,6 +1,6 @@
 {
   "name": "ember-popper-modifier",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "An Ember modifier for working with Popper.js.",
   "keywords": [
     "ember-addon"

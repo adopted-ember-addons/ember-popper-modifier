@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [2.0.1](https://github.com/alexlafroscia/ember-popper-modifier/compare/v2.0.0...v2.0.1) (2022-02-05)
 
+## v4.1.0 (2024-02-26)
+
+#### :rocket: Enhancement
+
+- [#840](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/840) Migrate to TypeScript and publish Glint types ([@jelhan](https://github.com/jelhan))
+
+#### :house: Internal
+
+- [#596](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/596) test embroider compatibility in CI ([@jelhan](https://github.com/jelhan))
+- [#838](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/838) migrate to PNPM ([@jelhan](https://github.com/jelhan))
+
+#### Committers: 1
+
+- Jeldrik Hanschke ([@jelhan](https://github.com/jelhan))
+
 ## v4.0.0 (2023-11-05)
 
 #### :boom: Breaking Change
