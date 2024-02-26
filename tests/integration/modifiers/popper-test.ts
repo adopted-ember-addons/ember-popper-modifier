@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { clearRender, render, type TestContext } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import td from 'testdouble';
+import * as td from 'testdouble';
 import { getPopperForElement } from 'ember-popper-modifier';
 import type {
   Options as PopperOptions,
