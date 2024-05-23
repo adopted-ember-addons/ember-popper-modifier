@@ -60,7 +60,7 @@ devDependencies:
     version: 6.1.0(release-it@17.3.0)
   '@tsconfig/ember':
     specifier: ^3.0.3
-    version: 3.0.7
+    version: 3.0.8
   '@types/qunit':
     specifier: ^2.19.10
     version: 2.19.10
@@ -2338,8 +2338,8 @@ packages:
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
     dev: true
 
-  /@tsconfig/ember@3.0.7:
-    resolution: {integrity: sha512-T9H3VNlino2mo3wpAd9EqRwJyERvUKnJnIyiYuL7b3UvV+yQAt7f9np81liHpmBeBQ5z5NzegA5vJGpvCOtYsQ==}
+  /@tsconfig/ember@3.0.8:
+    resolution: {integrity: sha512-OVnIsZIt/8q0VEtcdz3rRryNrm6gdJTxXlxefkGIrkZnME0wqslmwHlUEZ7mvh377df9FqBhNKrYNarhCW8zJA==}
     dev: true
 
   /@types/body-parser@1.19.5:
