@@ -179,8 +179,8 @@ devDependencies:
     specifier: ^4.1.0
     version: 4.1.0(prettier@3.3.2)(stylelint@15.11.0)
   testdouble:
-    specifier: 3.20.0
-    version: 3.20.0
+    specifier: 3.20.2
+    version: 3.20.2
   testdouble-qunit:
     specifier: ^3.0.0
     version: 3.0.3
@@ -10511,8 +10511,8 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
-  /quibble@0.9.1:
-    resolution: {integrity: sha512-2EkLLm3CsBhbHfYEgBWHSJZZRpVHUZLeuJVEQoU/lsCqxcOvVkgVlF4nWv2ACWKkb0lgxgMh3m8vq9rhx9LTIg==}
+  /quibble@0.9.2:
+    resolution: {integrity: sha512-BrL7hrZcbyyt5ZDfePkGFDc3m82uUtxCPOnpRUrkOdtBnmV9ldQKxXORkKL8eIzToRNaCpIPyKyfdfq/tBlFAA==}
     engines: {node: '>= 0.14.0'}
     dependencies:
       lodash: 4.17.21
@@ -12049,12 +12049,12 @@ packages:
     resolution: {integrity: sha512-HcDEL9V/XLMWW8gQ+T6BvCIde+6bFW4nXI3FSjcDJYRSSi8KNIbm1tcTediBIIXjsJ7ZtyavpkSlMew8g766gA==}
     dev: true
 
-  /testdouble@3.20.0:
-    resolution: {integrity: sha512-P/wfyKF1P1AE8/VM6PXCtSQJyOgPObOg191TlVZnoSQw/hhFXvxIFM5yGJ7Bf9Hs0FX8677YCv3esVgPGSeTLg==}
+  /testdouble@3.20.2:
+    resolution: {integrity: sha512-790e9vJKdfddWNOaxW1/V9FcMk48cPEl3eJSj2i8Hh1fX89qArEJ6cp3DBnaECpGXc3xKJVWbc1jeNlWYWgiMg==}
     engines: {node: '>= 16'}
     dependencies:
       lodash: 4.17.21
-      quibble: 0.9.1
+      quibble: 0.9.2
       stringify-object-es5: 2.5.0
       theredoc: 1.0.0
     dev: true
