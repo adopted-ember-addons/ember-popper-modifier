@@ -54,6 +54,19 @@ module('Integration | Modifier | popper', function (hooks) {
     assert.dom(this.tooltipElement).hasStyle({ position: 'absolute' });
   });
 
+  test('handles tooltip element being null', async function (this: Context, assert) {
+    await render<Context>(hbs`
+      <span data-test-tooltip {{popper-tooltip null}}>
+        Tooltip!
+      </span>
+    `);
+
+    // Check that the tooltip does not have Popper styles applied
+    assert
+      .dom('[data-test-tooltip]')
+      .doesNotHaveStyle({ position: 'absolute' });
+  });
+
   test('it can configure named options on the Popper', async function (this: Context, assert) {
     this.set('placement', 'right');
 
