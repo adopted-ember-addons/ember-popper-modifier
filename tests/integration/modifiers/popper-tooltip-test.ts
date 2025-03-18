@@ -41,7 +41,9 @@ module('Integration | Modifier | popper-tooltip', function (hooks) {
     `);
 
     // Check that the tooltip does not have Popper styles applied
-    assert.dom('[data-test-tooltip]').doesNotHaveStyle({ position: 'absolute' });
+    assert
+      .dom('[data-test-tooltip]')
+      .doesNotHaveStyle({ position: 'absolute' });
   });
 
   test('the popper instance for the element can be looked up', async function (this: Context, assert) {
