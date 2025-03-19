@@ -33,6 +33,19 @@ module('Integration | Modifier | popper-tooltip', function (hooks) {
     assert.dom('[data-test-tooltip]').hasStyle({ position: 'absolute' });
   });
 
+  test('handles reference element being null', async function (this: Context, assert) {
+    await render<Context>(hbs`
+      <span data-test-tooltip {{popper-tooltip null}}>
+        Tooltip!
+      </span>
+    `);
+
+    // Check that the tooltip does not have Popper styles applied
+    assert
+      .dom('[data-test-tooltip]')
+      .doesNotHaveStyle({ position: 'absolute' });
+  });
+
   test('the popper instance for the element can be looked up', async function (this: Context, assert) {
     await render<Context>(hbs`
       <span data-test-tooltip {{popper-tooltip this.referenceElement}}>

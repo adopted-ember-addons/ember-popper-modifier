@@ -23,7 +23,7 @@ import type Owner from '@ember/owner';
 export interface PopperSignature {
   Args: {
     Positional: [
-      HTMLElement,
+      HTMLElement | null,
       ...(Partial<CustomPopperOptions> | PopperModifierDescription)[],
     ];
     Named: Partial<CustomPopperOptions>;
