@@ -6,11 +6,11 @@ All notable changes to this project will be documented in this file. See [standa
 
 #### :bug: Bug Fix
 
-* [#940](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/940) allow reference and tooltip elements to be null in types ([@jelhan](https://github.com/jelhan))
+- [#940](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/940) allow reference and tooltip elements to be null in types ([@jelhan](https://github.com/jelhan))
 
 #### :house: Internal
 
-* [#941](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/941) fix CI for latest Ember versions ([@jelhan](https://github.com/jelhan))
+- [#941](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/941) fix CI for latest Ember versions ([@jelhan](https://github.com/jelhan))
 
 #### Committers: 1
 
