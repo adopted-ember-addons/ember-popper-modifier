@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v4.1.1 (2025-03-19)
+
+#### :bug: Bug Fix
+
+- [#940](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/940) allow reference and tooltip elements to be null in types ([@jelhan](https://github.com/jelhan))
+
+#### :house: Internal
+
+- [#941](https://github.com/adopted-ember-addons/ember-popper-modifier/pull/941) fix CI for latest Ember versions ([@jelhan](https://github.com/jelhan))
+
+#### Committers: 1
+
+- Jeldrik Hanschke ([@jelhan](https://github.com/jelhan))
+
 ## v4.1.0 (2024-02-26)
 
 #### :rocket: Enhancement
