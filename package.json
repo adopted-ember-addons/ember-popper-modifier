@@ -137,6 +137,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "packageManager": "pnpm@10.33.0",
   "ember": {
     "edition": "octane"
   },
