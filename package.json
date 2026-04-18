@@ -65,7 +65,7 @@
     "@popperjs/core": "^2.4.2",
     "ember-auto-import": "^2.7.2",
     "ember-cli-babel": "^8.2.0",
-    "ember-cli-htmlbars": "^6.3.0",
+    "ember-cli-htmlbars": "^7.0.0",
     "ember-modifier": "^4.0.0"
   },
   "devDependencies": {
@@ -111,7 +111,7 @@
     "lint-staged": "^15.0.2",
     "loader.js": "^4.7.0",
     "pinst": "^3.0.0",
-    "prettier": "^3.2.4",
+    "prettier": "^3.8.2",
     "qunit": "^2.20.0",
     "qunit-dom": "^3.0.0",
     "qunit-wait-for": "^2.0.0",
@@ -137,6 +137,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "packageManager": "pnpm@10.33.0",
   "ember": {
     "edition": "octane"
   },

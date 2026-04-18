@@ -5,9 +5,7 @@ import type RenderModifiersRegistry from '@ember/render-modifiers/template-regis
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry
-    extends PageTitle,
-      PopperModifierRegistry,
-      RenderModifiersRegistry {
+    extends PageTitle, PopperModifierRegistry, RenderModifiersRegistry {
     /* your local loose-mode entries here */
   }
 }
